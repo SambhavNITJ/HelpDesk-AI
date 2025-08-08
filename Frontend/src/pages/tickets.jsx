@@ -112,7 +112,7 @@ export default function Tickets() {
             {tickets.map((ticket) => (
               <Link
                 key={ticket._id}
-                className="card shadow-md p-4 bg-gray-800"
+                className="card shadow-md p-4 bg-gray-400"
                 to={`/tickets/${ticket._id}`}
               >
                 <h3 className="font-bold text-lg">{ticket.title}</h3>
