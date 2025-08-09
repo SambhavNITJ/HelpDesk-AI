@@ -118,7 +118,7 @@ export default function Tickets() {
                 <h3 className="font-bold text-lg">{ticket.title}</h3>
                 <p className="text-sm">{ticket.description}</p>
                 <p className="text-sm">Priority: {ticket.priority}</p>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-800">
                   Created At: {new Date(ticket.createdAt).toLocaleString()}
                 </p>
               </Link>

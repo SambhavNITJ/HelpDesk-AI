@@ -85,7 +85,7 @@ export default function TicketDetailsPage() {
             )}
 
             {ticket.createdAt && (
-              <p className="text-sm text-gray-500 mt-2">
+              <p className="text-sm text-gray-800 mt-2">
                 Created At: {new Date(ticket.createdAt).toLocaleString()}
               </p>
             )}

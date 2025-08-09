@@ -7,7 +7,7 @@ export function TicketsProvider({ children }) {
   const [page, setPage]       = useState(1);
   const [pages, setPages]     = useState(1);
   const [loading, setLoading] = useState(false);
-  const [priority, setPriority] = useState("");      // ← new
+  const [priority, setPriority] = useState("");
   const token = localStorage.getItem("token");
   const limit = 5;
 
