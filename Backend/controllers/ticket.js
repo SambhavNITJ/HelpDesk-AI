@@ -2,6 +2,7 @@
 import { inngest } from "../inngest/client.js";
 import Ticket from "../models/ticket.js";
 
+// Create a new support ticket
 export const createTicket = async (req, res) => {
   try {
     const { title, description, priority = "medium" } = req.body;
@@ -40,6 +41,9 @@ export const createTicket = async (req, res) => {
   }
 };
 
+
+//get all tickets
+
 export const getTickets = async (req, res) => {
   try {
     const user = req.user;
@@ -47,14 +51,20 @@ export const getTickets = async (req, res) => {
     const page = parseInt(req.query.page, 10) || 1;
     const limit = parseInt(req.query.limit, 10) || 5;
     const skip = (page - 1) * limit;
+    const priority = req.query.priority;
 
-    let baseQuery;
-    if (user.role !== "user") {
-      baseQuery = Ticket.find({});
-    } else {
-      baseQuery = Ticket.find({ createdBy: user._id }).select(
-        "title description status priority createdAt"
-      );
+    let filter = {};
+    if (user.role === "user") {
+      filter.createdBy = user._id;
+    }
+    if (priority) {
+      filter.priority = priority;
+    }
+
+    let baseQuery = Ticket.find(filter);
+
+    if (user.role === "user") {
+      baseQuery = baseQuery.select("title description status priority createdAt");
     }
 
     const total = await baseQuery.clone().countDocuments();
@@ -78,6 +88,9 @@ export const getTickets = async (req, res) => {
   }
 };
 
+
+
+///get a ticket by ID
 export const getTicket = async (req, res) => {
   try {
     const user = req.user;
